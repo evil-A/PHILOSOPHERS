@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   liba.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/09 22:48:24 by evila-ro          #+#    #+#             */
+/*   Updated: 2021/09/15 22:18:28 by evila-ro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
-	int	number;
-	int	cypher;
+	long long int	i;
+	int				sign;
+	long long int	number;
+	long long int				cypher;
 
 	i = 0;
 	sign = 1;
@@ -26,4 +38,17 @@ int	ft_atoi(const char *str)
 		return (-1);
 	}
 	return (number * sign);
+}
+
+int	isnum(char *num)
+{
+	if (*num == '-' || *num == '+')
+		num++;
+	if (*num == '\0')
+		return (3);
+	while (*num >= '0' && *num <= '9')
+		num++;
+	if (*num != '\0')
+		return (3);
+	return (0);
 }
