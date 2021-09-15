@@ -1,35 +1,45 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/09/09 22:44:02 by evila-ro          #+#    #+#              #
+#    Updated: 2021/09/09 22:59:50 by evila-ro         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #-fsanitize=address
 
-NAME	= philo.a
-OUTPUT	= philo
+NAME	= philo
 
-CFLAGS	= -Wall -Werror -Wextra -pthread -g3 
+SRCS	= ./init.c ./liba.c ./checkin.c
 
-ifeq ($(shell whoami), runner)
-	COVID_NORM		=	ruby ~/.norminette/norminette.rb
-else
-	COVID_NORM		=	ruby -e STDOUT.sync=true -e 'load($$0=ARGV.shift)' ~/.norminette/norminette.rb
-endif
+OBJS	= ${SRCS:.c=.o}
 
-SRC	= srcs/main.c	srcs/liba.c	srcs/checkin.c
+CC		= gcc
 
-OBJ	= $(SRC:.c=.o)
+CFLAGS	= -Wall -Werror -Wextra -I -g3 -fsanitize=address
 
-all: $(NAME)
-$(NAME): $(SRC) srcs/philo.h
-	@gcc $(CFLAGS) $(SRC)
-	@ar -r $(NAME) $(OBJ)
-	@ranlib $(NAME)
+LIBS	= -pthread
 
-%.o: %.c
-	@gcc $(NAME) -o $@
+${NAME}:	${OBJS}
+			@${CC} ${CFLAGS} ${LIBS} ${OBJS} -o ${NAME}
+
+all:	${NAME}
 
 clean:
-	@rm -f *.o
-	@rm -f *.out
+		@${RM} ${OBJS}
 
-fclean: clean
-	@rm -f $(NAME)
+fclean:		clean
+			@${RM} ${NAME}
 
 re: fclean all
-.PHONY: all clean fclean re
+
+.PHONY: all clean fclean re 
+#ifeq ($(shell whoami), runner)
+#	COVID_NORM		=	ruby ~/.norminette/norminette.rb
+#else
+#	COVID_NORM		=	ruby -e STDOUT.sync=true -e 'load($$0=ARGV.shift)' ~/.norminette/norminette.rb
+#endif
