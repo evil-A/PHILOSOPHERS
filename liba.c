@@ -6,11 +6,22 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:48:24 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/09/15 22:34:00 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/09/18 21:21:46 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	char	*p;
+	int		i;
+
+	i = 0;
+	p = s;
+	while (n-- > 0)
+		p[i++] = '\0';
+}
 
 int	ft_atoi(const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/09/15 22:16:14 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/09/21 21:04:35 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,39 @@
 # include <pthread.h>
 # include <limits.h>
 # include <strings.h>
+# include <stdlib.h>
+# define DEAD 0
+# define EAT 1
+# define SLEEP 2
+# define THINK 3
 
-typedef struct s_philo
+typedef struct s_phil
 {
-	int	nphils;
-	int	forks;
-	int	tdie;
-	int	teat;
-	int	tslp;
+	pthread_t	f;
+	int			id;
+	int			state;
+	int			fork;
+	int			die;
+}				t_phil;
+
+typedef struct s_phila
+{
+	int			nphils;
+	int			forks;
+	int			tdie;
+	int			teat;
+	int			tslp;
 	long int	rounds;
-}				t_philo;
+	t_phil		*lp;
+}				t_phila;
 
 int		main(int argc, char **argv);
-void	setup(t_philo phil, char **argv);
+void	setup(t_phila *phil, char **argv);
 int		ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
 int		isnum(char *num);
-void	check_args(int argc, char **argv);
-void	check_num(int argc, char **argv);
-void	status(int argc, char **argv);
+int		check_args(int argc, char **argv);
+int		check_num(int argc, char **argv);
+int		status(int argc, char **argv);
 
 #endif

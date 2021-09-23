@@ -6,13 +6,13 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:44:20 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/09/15 22:09:53 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/09/21 19:05:48 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	status(int argc, char **argv)
+int	status(int argc, char **argv)
 {
 	printf("There's %d philosophers.\n", ft_atoi(argv[1]));
 	printf("Sharing %d forks.\n", ft_atoi(argv[1]));
@@ -24,22 +24,31 @@ void	status(int argc, char **argv)
 		printf("At least %d times.\n", ft_atoi(argv[5]));
 	else
 		printf("Till someone dies of sudden death or the hell freezes.\n");
+	return (1);
 }
 
-void	check_num(int argc, char **argv)
+int	check_num(int argc, char **argv)
 {
 	int	i;
 
 	i = 1;
 	while (i < argc && !(isnum(argv[i])))
-		i++;
+	{
+		if (ft_atoi(argv[i]) > 0 && ft_atoi(argv[i]) < INT_MAX)
+			i++;
+		else
+			break ;
+	}
 	if (i < argc)
-		printf("Use numbers.\n");
+	{
+		printf("Use right arguments.\n");
+		return (0);
+	}
 	else
-		check_args(argc, argv);
+		return (check_args(argc, argv));
 }
 
-void	check_args(int argc, char **argv)
+int	check_args(int argc, char **argv)
 {
 	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > 200)
 		printf("Cambia el número de comensales...\n");
@@ -54,5 +63,6 @@ void	check_args(int argc, char **argv)
 	else if (ft_atoi(argv[4]) < 60 || ft_atoi(argv[4]) > INT_MAX)
 		printf("Comensales insomnes...\n");
 	else
-		status(argc, argv);
+		return (status(argc, argv));
+	return (0);
 }
