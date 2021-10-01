@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/09/21 21:04:35 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/09/29 21:55:13 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
 # include <limits.h>
 # include <strings.h>
 # include <stdlib.h>
@@ -28,19 +29,23 @@ typedef struct s_phil
 	pthread_t	f;
 	int			id;
 	int			state;
-	int			fork;
+//	int			fork;
+	pthread_mutex_t			*froks;
 	int			die;
+	int			ntimes;
+	int			dish;
 }				t_phil;
 
 typedef struct s_phila
 {
-	int			nphils;
-	int			forks;
-	int			tdie;
-	int			teat;
-	int			tslp;
-	long int	rounds;
-	t_phil		*lp;
+	int						nphils;
+//	pthread_mutex_t			**froks;
+	int						tdie;
+	int						teat;
+	int						tslp;
+	int						pi;
+	long int				rounds;
+	t_phil					*lp;
 }				t_phila;
 
 int		main(int argc, char **argv);
