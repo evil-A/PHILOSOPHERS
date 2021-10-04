@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/09/29 21:55:13 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/04 22:36:43 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_phil
 //	int			fork;
 	pthread_mutex_t			*froks;
 	int			die;
+	int			eat;
+	int			sleep;
 	int			ntimes;
 	int			dish;
 }				t_phil;
@@ -39,7 +41,7 @@ typedef struct s_phil
 typedef struct s_phila
 {
 	int						nphils;
-//	pthread_mutex_t			**froks;
+	pthread_mutex_t			**froks;
 	int						tdie;
 	int						teat;
 	int						tslp;
