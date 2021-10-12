@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:45:04 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/04 22:36:40 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/12 23:34:39 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	*sit(void *arg)
 		pthread_mutex_lock(&lp->froks[1]);
 
 		//int stamp = gettimeofday(struct timeval *restrict tp, void *restrict tzp);
-		printf("Tiempo el philosofo %d está comiendo\n", lp->id);
+		printf("%I64d  el philosofo %d está comiendo\n", lp->id);
 		usleep(lp->eat);
 
 		pthread_mutex_unlock(&lp->froks[0]);
@@ -142,9 +142,14 @@ int	imprime(t_phila *p)
 		p->pi = i;
 		i++;
 	}
+	gettimeofday(&p->it, NULL);
+	printf("seconds : %ld\nmicro seconds : %d\n", p->it.tv_sec, p->it.tv_usec);
+	p->st = (p->it.tv_sec * 1000) + (p->it.tv_usec / 1000);
 	i = 0;
 	while (i < p->nphils)
 		pthread_join(p->lp[i++].f, NULL);
+	//p->it = gettimeofday(struct timeval *restrict tp, void *restrict tzp);
+
 	return (0);
 }
 

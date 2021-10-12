@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/04 22:36:43 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/12 23:34:43 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_phila
 	int						tslp;
 	int						pi;
 	long int				rounds;
+	uint64_t				st;
+	struct timeval			it;
 	t_phil					*lp;
 }				t_phila;
 
