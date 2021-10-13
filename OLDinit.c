@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/13 07:29:39 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/13 07:39:19 by evila-ro         ###   ########.fr       */
+/*   Created: 2021/09/09 22:45:04 by evila-ro          #+#    #+#             */
+/*   Updated: 2021/10/13 07:22:32 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	setup(t_phila *p, int i, char **argv)
 {
 	p[i].nphils = ft_atoi(argv[1]);
-//	p[i].forks = ft_atoi(argv[1]);
+//	p->forks = ft_atoi(argv[1]);
 	p[i].tdie = ft_atoi(argv[2]);
 	p[i].teat = ft_atoi(argv[3]);
 	p[i].tslp = ft_atoi(argv[4]);
 	if (argv[5])
 	{
-		if (argv[5] == 0)
+		if (ft_atoi(argv[5]) == 0)
 			p[i].rounds = -1;
 		else
 			p[i].rounds = ft_atoi(argv[5]);
@@ -44,37 +44,36 @@ static void	philer(t_phila *p, int i)
 
 //	p[i]->lp.froks = malloc(sizeof(pthread_mutex_t) * p[i]->nphils);
 	pthread_mutex_init(&p[i].lp.froks[1], NULL);
-	
-//	pthread_mutex_init(&p->lp.froks[1], NULL);//fadeout
+
+/*	pthread_mutex_init(&p->lp.froks[1], NULL);//fadeout
 	if (i != 0)// todos menos el primero
-		p[i].lp.froks[0] = p[i - 1].lp.froks[1];
-	if (p[i].lp.id == p[i].nphils)//el ultimo
-		p[0].lp.froks[0] = p[i].lp.froks[1];
-
+		p->lp.froks[0] = p->lp[i - 1].froks[1];
+	if (p->lp[i].id == p->nphils)//el ultimo
+		p->lp[0].froks[0] = p->lp[i].froks[1];
+*/
 }
-
 void	*sit(void *arg)
 {
-	t_phila			*p;
+	t_phil			*lp;
 	
-	p = (t_phila*)arg;
+	lp = (t_phil*)arg;
 	//printf("Philosofo %d se sienta a la mesa\n", lp->id);	
 	while (1)
 	{
-		pthread_mutex_lock(&p->lp.froks[0]);
-		pthread_mutex_lock(&p->lp.froks[1]);
+		pthread_mutex_lock(&lp->froks[0]);
+		pthread_mutex_lock(&lp->froks[1]);
 
 		//int stamp = gettimeofday(struct timeval *restrict tp, void *restrict tzp);
 //		printf("%I64d  el philosofo %d está comiendo\n", lp->id);
-		usleep(p->lp.eat);
+		usleep(lp->eat);
 
-		pthread_mutex_unlock(&p->lp.froks[0]);
-		pthread_mutex_unlock(&p->lp.froks[1]);
+		pthread_mutex_unlock(&lp->froks[0]);
+		pthread_mutex_unlock(&lp->froks[1]);
 
-		printf("Tiempo el philosofo %d está durmiendo\n", p->lp.id);
-		usleep(p->lp.sleep);
-		printf("Tiempo el philosofo %d está pensando\n", p->lp.id);
-		usleep((p->lp.die) - p->lp.eat + p->lp.sleep);
+		printf("Tiempo el philosofo %d está durmiendo\n", lp->id);
+		usleep(lp->sleep);
+		printf("Tiempo el philosofo %d está pensando\n", lp->id);
+		usleep((lp->die) - lp->eat + lp->sleep);
 	}
 	return (NULL);
 }
@@ -104,7 +103,6 @@ int	imprime(t_phila *p)
 
 	return (0);
 }
-
 void	create(t_phila *p, char **argv)
 {
 	int	i;
@@ -112,11 +110,11 @@ void	create(t_phila *p, char **argv)
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
-//		printf("%d\n", i);
+//		printf("%d\n", ft_atoi(argv[1]));
 //		p[i]->lp = *(t_phil *)malloc(sizeof(t_phil));
 //		p[i] = malloc(sizeof(t_phila));
+//		ft_bzero(p[i], sizeof(t_phila));
 //		exit (0);
-		//ft_bzero(p[i], sizeof(t_phila));
 		setup(p, i, argv);
 //		buildup(p[i], i);
 		philer(p, i);

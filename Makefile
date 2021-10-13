@@ -6,7 +6,7 @@
 #    By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 22:44:02 by evila-ro          #+#    #+#              #
-#    Updated: 2021/09/18 20:19:32 by evila-ro         ###   ########.fr        #
+#    Updated: 2021/10/13 07:07:39 by evila-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@
 
 NAME	= philo
 
-SRCS	= ./init.c ./liba.c ./checkin.c
+SRCS	= init.c	liba.c	checkin.c
 
 OBJS	= ${SRCS:.c=.o}
 
 CC		= gcc
 
-CFLAGS	= -Wall -Werror -Wextra -I -g3 -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -I. -g3 -fsanitize=address
 
 LIBS	= -pthread
 

@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/13 02:33:06 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/13 07:09:20 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <limits.h>
-# include <strings.h>
+# include <string.h>
 # include <stdlib.h>
+# include <stdint.h>
+
 # define DEAD 0
 # define EAT 1
 # define SLEEP 2
@@ -53,7 +55,7 @@ typedef struct s_phila
 }				t_phila;
 
 int		main(int argc, char **argv);
-void	setup(t_phila *phil, char **argv);
+void	setup(t_phila *phil, int i, char **argv);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 int		isnum(char *num);
