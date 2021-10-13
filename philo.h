@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/13 01:28:36 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/13 02:33:06 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_phil
 typedef struct s_phila
 {
 	int						nphils;
-	pthread_mutex_t			**froks;
+//	pthread_mutex_t			*froks;
 	int						tdie;
 	int						teat;
 	int						tslp;
@@ -49,7 +49,7 @@ typedef struct s_phila
 	long int				rounds;
 	uint64_t				st;
 	struct timeval			it;
-	t_phil					*lp;
+	t_phil					lp;
 }				t_phila;
 
 int		main(int argc, char **argv);
