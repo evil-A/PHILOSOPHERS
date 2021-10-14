@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/13 07:09:20 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/14 07:07:52 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_phil
 	int			state;
 //	int			fork;
 	pthread_mutex_t			*froks;
+	pthread_mutex_t			*ross;
 	int			die;
 	int			eat;
 	int			sleep;
@@ -50,17 +51,20 @@ typedef struct s_phila
 	int						pi;
 	long int				rounds;
 	uint64_t				st;
+	uint64_t				nt;
+	uint64_t				zt;
 	struct timeval			it;
 	t_phil					lp;
 }				t_phila;
 
-int		main(int argc, char **argv);
-void	setup(t_phila *phil, int i, char **argv);
-int		ft_atoi(const char *str);
-void	ft_bzero(void *s, size_t n);
-int		isnum(char *num);
-int		check_args(int argc, char **argv);
-int		check_num(int argc, char **argv);
-int		status(int argc, char **argv);
+int			main(int argc, char **argv);
+void		setup(t_phila *phil, int i, char **argv);
+int			ft_atoi(const char *str);
+void		ft_bzero(void *s, size_t n);
+int			isnum(char *num);
+uint64_t	mili(uint64_t sec, uint64_t usec);
+int			check_args(int argc, char **argv);
+int			check_num(int argc, char **argv);
+int			status(int argc, char **argv);
 
 #endif
