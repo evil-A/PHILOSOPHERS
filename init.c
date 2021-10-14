@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 07:29:39 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/14 08:53:20 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/15 00:46:39 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	setup(t_phila *p, int i, char **argv)
 
 static void	philer(t_phila *p, int i)
 {
+	t_rush	*rush;
+
 	p[i].lp.id = i + 1;
 	p[i].lp.eat = p[i].teat * 1000;
 	p[i].lp.sleep = p[i].tslp * 1000;
@@ -38,10 +40,14 @@ static void	philer(t_phila *p, int i)
 		p[i].lp.ntimes = p[i].rounds;
 	else
 		p[i].lp.ntimes = -1;
+	rush = malloc(sizeof(t_rush));
 	p[i].lp.froks = malloc(sizeof(pthread_mutex_t) * 2);
-	p[i].lp.ross = malloc(sizeof(pthread_mutex_t));
+	rush->ross = malloc(sizeof(pthread_mutex_t));
+//	p[i].lp.ross = malloc(sizeof(pthread_mutex_t));
 	pthread_mutex_init(&p[i].lp.froks[1], NULL);
-	pthread_mutex_init(p[i].lp.ross, NULL);
+	pthread_mutex_init(rush->ross, NULL);
+//	pthread_mutex_init(p[i].lp.ross, NULL);
+	p[i].rush = rush;
 	if (i != 0)// todos menos el primero
 		p[i].lp.froks[0] = p[i - 1].lp.froks[1];
 	if (p[i].lp.id == p[i].nphils)//el ultimo
@@ -50,14 +56,14 @@ static void	philer(t_phila *p, int i)
 
 void	prontf(t_phila *p, char *str)
 {
-	pthread_mutex_lock(p->lp.ross);
+	pthread_mutex_lock(p->rush->ross);
 //	printf("XXXXX %04llu\n", (uint64_t)p->st);
-	gettimeofday(&p->it, NULL);
-	p->nt = mili(p->it.tv_sec, p->it.tv_usec);
-	p->zt = p->nt - p->st;
+	gettimeofday(&p->rush->it, NULL);
+	p->rush->nt = mili(p->rush->it.tv_sec, p->rush->it.tv_usec);
+	p->rush->zt = p->rush->nt - p->rush->st;
 //	printf("start %04llu now %04llu resta %04llu\n", p->st, p->nt, p->zt);
-	printf("%04llu El filósofo %d %s\n", p->zt, p->lp.id, str);
-	pthread_mutex_unlock(p->lp.ross);
+	printf("%04llu El filósofo %d %s\n", p->rush->zt, p->lp.id, str);
+	pthread_mutex_unlock(p->rush->ross);
 	
 }
 /*
@@ -127,10 +133,10 @@ int	imprime(t_phila *p)
 		p[i].pi = i;
 //		gettimeofday(&p[i].it, NULL);
 //		p[i].st = mili(p[i].it.tv_sec, p[i].it.tv_usec);
-		p[i].st = mili(zod.tv_sec, zod.tv_usec);
+		p[i].rush->st = mili(zod.tv_sec, zod.tv_usec);
 		printf("seconds : %ld\nmicro seconds : %d\n", (zod.tv_sec), (zod.tv_usec));
 //		printf("seconds : %ld\nmicro seconds : %d\n", (p[i].it.tv_sec), (p[i].it.tv_usec));
-		printf("%04llu\n", p[i].st);
+		printf("%04llu\n", p[i].rush->st);
 		i++;
 	}
 //	gettimeofday(&p[i].it, NULL);

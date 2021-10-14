@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/14 07:07:52 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/15 00:46:36 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,22 @@ typedef struct s_phil
 	int			state;
 //	int			fork;
 	pthread_mutex_t			*froks;
-	pthread_mutex_t			*ross;
+//	pthread_mutex_t			*ross;
 	int			die;
 	int			eat;
 	int			sleep;
 	int			ntimes;
 	int			dish;
 }				t_phil;
+
+typedef struct s_rush
+{
+	pthread_mutex_t			*ross;
+	uint64_t				st;
+	uint64_t				nt;
+	uint64_t				zt;
+	struct timeval			it;
+}				t_rush;
 
 typedef struct s_phila
 {
@@ -50,10 +59,11 @@ typedef struct s_phila
 	int						tslp;
 	int						pi;
 	long int				rounds;
-	uint64_t				st;
-	uint64_t				nt;
-	uint64_t				zt;
-	struct timeval			it;
+//	uint64_t				st;
+//	uint64_t				nt;
+//	uint64_t				zt;
+//	struct timeval			it;
+	t_rush					*rush;
 	t_phil					lp;
 }				t_phila;
 
