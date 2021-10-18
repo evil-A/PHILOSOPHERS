@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:48:24 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/15 10:25:30 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/17 05:46:51 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	isnum(char *num)
 uint64_t	getime(void)
 {
 	struct timeval	tv;
+
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec) * (uint64_t)1000 + (tv.tv_usec / 1000));
 }
