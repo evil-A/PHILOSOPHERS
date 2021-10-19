@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:49:19 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/18 11:05:04 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/19 09:54:42 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_phila
 	int						teat;
 	int						tslp;
 	int						the_end;
+	int						nobody;
 	long int				rounds;
 	uint64_t				st;
 	pthread_mutex_t			ross;
@@ -53,7 +54,16 @@ typedef struct s_phila
 }				t_phila;
 
 int			main(int argc, char **argv);
-void		setup(t_phila *phil, char **argv);
+void		freedom(t_phila *p);
+void		create(t_phila *p, char **argv);
+int			loopi(t_phila *p);
+void		alive(t_phila *p);
+void		*sit(void *arg);
+void		even(t_phil *lp);
+void		nosleep(uint64_t msec);
+void		prontf(t_phil *lp, char *str, int force);
+void		philer(t_phil *lp, int i);
+void		setup(t_phila *p, char **argv);
 int			ft_atoi(const char *str);
 void		ft_bzero(void *s, size_t n);
 int			isnum(char *num);

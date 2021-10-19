@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:48:24 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/10/17 05:46:51 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/19 09:47:44 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,13 @@ uint64_t	getime(void)
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec) * (uint64_t)1000 + (tv.tv_usec / 1000));
+}
+
+void	nosleep(uint64_t msec)
+{
+	uint64_t	diff;
+
+	diff = getime() + msec;
+	while (diff > getime())
+		usleep(500);
 }

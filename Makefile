@@ -6,7 +6,7 @@
 #    By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 22:44:02 by evila-ro          #+#    #+#              #
-#    Updated: 2021/10/18 11:30:26 by evila-ro         ###   ########.fr        #
+#    Updated: 2021/10/19 09:52:54 by evila-ro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME	= philo
 
-SRCS	= init.c	liba.c	checkin.c
+SRCS	= init.c	liba.c	libb.c	checkin.c
 
 OBJS	= ${SRCS:.c=.o}
 

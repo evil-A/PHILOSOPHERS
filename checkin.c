@@ -6,7 +6,7 @@
 /*   By: evila-ro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 22:44:20 by evila-ro          #+#    #+#             */
-/*   Updated: 2021/09/21 19:05:48 by evila-ro         ###   ########.fr       */
+/*   Updated: 2021/10/19 09:51:44 by evila-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,16 @@ int	check_args(int argc, char **argv)
 	else
 		return (status(argc, argv));
 	return (0);
+}
+
+void	freedom(t_phila *p)
+{
+	int	i;
+
+	i = 0;
+	while (i < p->nphils)
+	{
+		pthread_mutex_destroy(p->lp[i].fr);
+		i++;
+	}
 }
